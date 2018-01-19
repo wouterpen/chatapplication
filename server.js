@@ -8,7 +8,7 @@ const pg = require ('pg')
 const bodyParser = require ("body-parser")  
 const Client = pg.Client  
 app.set('view engine', 'pug')
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({ extended: true }))
 require ('dotenv').load();
 var bcrypt = require('bcrypt');
 app.use(express.static('public'));
