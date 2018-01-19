@@ -18,10 +18,11 @@ connections=[];
 app.use(cookieParser());
 
 const client = new Client ({  
-	user: process.env.pgUsername, 
-	host: process.env.host, 
-	database: process.env.database,
-	password: process.env.password, 
+	user: process.env.user,
+    host: process.env.host,
+    database: process.env.database,
+    password: process.env.password,
+    portdatabase: process.env.portdatabase
 })
 
 client.connect()
