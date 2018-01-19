@@ -1,0 +1,115 @@
+body{
+        margin-top: 30px;
+        border-radius: 10px;
+        background-image: url("../images/background.jpeg");
+        background-position-x: center;
+        background-position-y: bottom;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        color: black;
+      }
+      #container{
+        width: 700px;
+        margin: 0 auto;
+      }
+      #chatWindow{
+        height: 300px;
+        border-radius: 10px;
+      }
+      #privatechatWindow{
+        height: 300px;
+        border-radius: 10px;
+      }
+      #mainWrapper{
+        display: none;
+      }
+      #privatemainWrapper{
+        display: none;
+      }
+      
+      #chatWrapper{ 
+        float: left;
+        /*margin-top: 15vh;*/
+        color: black;
+        width: 400px;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background-color: #ffffff91;
+        padding: 10px;
+      }
+      #privatechatWrapper{ 
+        float: left;
+        margin-top: 15vh;
+        color: black;
+        width: 400px;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background-color: #ffffff91;
+        padding: 10px;
+      }
+
+      #userWrapper{
+        float: left;
+        /*margin-top: 30vh;*/
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        color: black;
+        background-color: #ffffff91;
+        padding: 10px;
+        margin-left: 20px;
+        max-width: 180px;
+
+        /*max-height: 200px;*/
+      }
+      #namesWrapper{
+        margin: 0 auto;
+        /*float: left;*/
+        margin-top: 10vh;
+        max-width: 50vh;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background-color: #f4f4f44f;
+        padding: 10px;
+
+      }
+      input{
+        height: 40px;
+        border-radius: 10px;
+        color: white;
+        background-color: #6c6c7a7a;
+        border:1px #ccc solid;
+      }
+      button{
+        height: 40px;
+        border-radius: 10px;
+        color: white;
+        background-color: #6c6c7a7a;
+        border:1px #ccc solid;
+      }
+      h6{padding: 0px;
+        margin: 0px;
+        }
+      h2{
+        text-align: center;
+        color: white;
+      }
+
+      #users{
+        padding: 0px;
+      }
+
+      .whisper{
+        color: blue;
+      }
+
+
+      .error{
+        color: red;
+      }
+      .secret{
+        color: blue;
+      }

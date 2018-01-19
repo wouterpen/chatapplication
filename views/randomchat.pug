@@ -1,0 +1,121 @@
+html
+  head
+    title IOCHAT
+    link(rel='stylesheet', type='text/css', href='css/randomchat.css')
+    script(src='https://code.jquery.com/jquery-latest.min.js')
+    script(src='/socket.io/socket.io.js')
+  
+  body
+    include nav.pug
+    div(id='container')
+      div(id='namesWrapper')
+        h2  chatio
+        p Create Username
+        div(id='error')
+        form(id='usernameForm')
+          input(id='username' type='text', size='35', placeholder="username")
+          input(type='submit', value='submit')
+      div(id='mainWrapper')
+        h2 chat with strangers
+        div(id='chatWrapper')
+          div(id='chatWindow')
+          form(id='messageForm')
+            input(id='message' type='text', size='35', placeholder='Say something...')
+            input(type='submit', value='submit')
+        div(id='userWrapper')
+          h6 users:
+          div(id='users')
+      div(id='privatemainWrapper')
+        div(id='privatechatWrapper')
+          div(id='privatechatWindow')
+          form(id='privatemessageForm')
+            input(id='privatemessage' type='text', size='35', placeholder='Say something...')
+            input(id='privateUsername' type='hidden', userName="")
+            input(id='privateUserID' type='hidden', userID="")
+            input(type='submit', value='submit')
+        
+        script(type='text/javascript').
+          $(function(){
+            var socket = io.connect();
+            // by io.connect() its gonna connect with your server.js file
+            //$ is a reference for using jquery, so thats why it's user with the variable names
+            var $messageForm = $('#messageForm');
+            var $privatemessageForm = $('#privatemessageForm');
+            var $message = $('#message');
+            var $privatemessage = $('#privatemessage');
+            var $privateUsername = $('#privateUsername');
+            var $privateUserID = $('#privateUserID');
+            var $chat = $('#chatWindow');
+            var $privatechat = $('#privatechatWindow');
+            var $messageArea = $('#messageArea');
+            var $usernameForm = $('#usernameForm')
+            var $users = $('#users')
+            var $username = $('#username')
+            var $error = $('#error')
+            // we wanna get the message form and submit
+            // so we emit(emit means uitzenden) the message and on the server side we receive
+            var emoticons = {':(':'<img height="20px" src=../images/Disappointed_Face_Emoji.png>',
+              '(k)':'<img height="20px" src=../images/Kissing_Face_Emoji.png>',
+              ':)':'<img height="20px" src=../images/Slightly_Smiling_Face_Emoji.png>',
+              ':P':'<img height="20px" src=../images/Tongue_Out_Emoji_3.png>'}
+            
+            $("#messageForm").submit((e)=>{
+              e.preventDefault();
+              socket.emit('send message', $message.val(), (data)=>{
+                  $chat.append('<div class = "error">' + data + '</div>')
+              });
+              $message.val('');
+            })
+            // we are adding the message to the chat window, data in new message is received from the server side
+            socket.on('new message', (data)=>{
+              Object.keys(emoticons).forEach(emoticon => data.msg = data.msg.replace(emoticon,emoticons[emoticon]))
+              $chat.append('<div> <strong>'+data.user+'</strong>: ' + data.msg + '</div>')
+            })
+             socket.on('whisper', (data)=>{
+              Object.keys(emoticons).forEach(emoticon => data.msg = data.msg.replace(emoticon,emoticons[emoticon]))
+              $chat.append('<div class="whisper"> <strong>'+data.user+'</strong>: ' + data.msg + '</div>')
+            })
+            socket.on('new privatemessage', (data)=>{
+              $('#privatemainWrapper').show()
+              Object.keys(emoticons).forEach(emoticon => data.msg = data.msg.replace(emoticon,emoticons[emoticon]))
+              $privatechat.append('<div class="whisper"> <strong>'+data.user+'</strong>: ' + data.msg + '</div>')
+            })
+            $("#usernameForm").submit((e)=>{
+              e.preventDefault();
+              socket.emit('new user', $username.val(), (data)=>{
+                if (data){
+                  $('#namesWrapper').hide()
+                  $('#mainWrapper').show()
+                }
+                else{
+                  $error.html('username is taken')
+                }
+              });
+            })
+            socket.on('usernames', (data)=>{
+              var html = '';
+              for (i=0; i< data.userArr.length; i++){
+                html += `<button class="userbutton" userId='${data.userArr[i].id}' name='${data.userArr[i].name}'>`+data.userArr[i].name+'</button>'+'<br> '
+              }
+              $users.html(html)
+              $('.userbutton').click(function(e){
+                var userID = $(this).attr('userId')
+                var userName = $(this).attr('Name')
+                $('#privatemainWrapper').show()
+                $('#privateUserID').val(userID)
+                $('#privateUsername').val(userName)
+              })
+               $("#privatemessageForm").submit((e)=>{
+                  e.preventDefault();
+                  var messageWithHeader =  {
+                    message: $privatemessage.val(),
+                    name: $privateUsername.val(),
+                    id: $privateUserID.val() 
+                  }
+                  socket.emit('send privatemessage', messageWithHeader, (data)=>{
+                    $privatechat.append('<div class = "error">' + data + '</div>')
+                  });
+                  $privatemessage.val('');
+                })
+              })
+            })

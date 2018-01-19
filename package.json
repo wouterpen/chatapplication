@@ -1,0 +1,25 @@
+{
+  "name": "iochat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "latest",
+    "bcrypt": "latest",
+    "body-parser": "latest",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "express-sessions": "latest",
+    "multer": "latest",
+    "pg": "latest",
+    "pug": "latest"
+  }
+}

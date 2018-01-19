@@ -1,0 +1,145 @@
+body{
+	background-image: url(../images/background.jpeg);
+	background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+	}
+
+#toplogin{
+	float: left;
+	width:100vw;
+	height: 25vh;
+}
+h1{
+	margin-top: 30px; 
+	text-align: center;
+	color: white;
+}
+
+#leftlogin{
+	float:left;
+	width:10vw;
+	height: 60vh;
+	/*border: 1px black solid;*/
+}
+
+#loginmiddle{
+	float:left;
+}
+
+	#logincontainer{
+		/*border: solid black 2px;*/
+		/*height: 60vh;*/
+	}
+	#logincontainer h1{
+		text-align: center;
+		color: black;
+		/*border: solid black 2px;*/
+	}
+
+		.loginform{
+			float:left;
+			height: 60vh;
+			/*border: 1px solid black;*/
+		}
+			.loginform input{
+				margin-bottom: 1vh;
+				height: 3vh;
+			}
+			
+			.inputloginform{
+				/*border: 1px black solid;*/
+			}
+
+				.loginemail{
+					background-color: white;
+					border: 1px solid black;
+					width: 25vw;
+
+				}
+				.loginpassword{
+					background-color: white;
+					border: 1px solid black;
+					width: 25vw;
+
+				}
+
+				.loginsubmit{
+					width: 8.85vw;
+					color: white;
+					background: black;
+					float: left;
+				}
+				.forgotpassword{
+					float: left;
+					width: 15vw;
+					margin-left: 2vh;
+					color: white;
+					background-color: black;
+				}
+
+		#loginsplit{
+			float:left;
+			width: 29vw;
+			height: 60vh;
+			/*border: 1px solid black;*/
+
+		}
+		.signupform{
+			float:left;
+			height: 60vh;
+			/*border:1px solid black;*/
+
+		}
+			.signupform input{
+				/*width: 25vw;*/
+				margin-bottom: 1vh;
+				height: 3vh;
+			}
+				.emailSignUp{
+					background-color: white;
+					border: 1px solid black;
+					width: 25vw;
+
+				}
+				.passwordSignUp{
+					background-color: white;
+					border: 1px solid black;
+					width: 25vw;
+				}
+				.passwordSignUpCheck{
+					background-color: white;
+					border: 1px solid black;
+					width: 25vw;
+				}
+				.signupsubmit{
+					background-color: black;
+					color: white;
+					width: 10vw;
+					float: right;
+				}
+
+#rightlogin{
+	float:left;
+	width:6vw;
+}
+#bottomlogin{
+	float: left;
+	height: 15vh;
+	width: 100vw;
+}
+	#bottomlogin #welcomelogin{
+		margin-left: 4vw;
+		float:left;
+		color: #FFCB04;
+	}
+	#bottomlogin #discoverlogin{
+		margin-right: 4vw;
+		float:right;
+	}
+

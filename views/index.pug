@@ -1,0 +1,73 @@
+html
+  head
+    link(rel='stylesheet', type='text/css', href='css/index.css')
+    script(src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous")
+  body(class="login")
+    h1 Welcome to my chat app!!!
+    div(id="toplogin")
+    div(id="leftlogin")
+    div(id="loginmiddle")
+      div(id='logincontainer')
+        form(method="POST" class="loginform" action="/login")
+          h1 log in
+          div(class="inputloginform")
+            div(id="emaillogin")
+              input(type="text" placeholder="e-mailadress" class="loginemail" name="loginemail")
+            div(id="passwordlogin")
+              input(type="password" placeholder="password" class="loginpassword" name="loginpassword")
+            div
+              input(type="submit" class ="loginsubmit" id="login" value="LOGIN")
+            div
+              input(type="submit" class ="forgotpassword"  value="FORGOT PASSWORD")
+        div(id="loginsplit")
+        form(method="POST" class="signupform" action="/signup")
+          h1 sign up
+          div
+            div
+              input(type="text" placeholder="e-mailadress" class="emailSignUP" name="email")
+            div
+              input(type="password" placeholder="password" class="passwordSignUp" name="password")
+            div
+              input(type="password" placeholder="password" class="passwordSignUpCheck" name="passwordCheck")
+            div
+              input(type="submit" class ="signupsubmit" id="submit" value="SIGN UP")
+    div(id="rightlogin")
+    div(id="bottomlogin")
+    script(type='text/javascript').
+      $(document).ready(function() {
+        $(".signupsubmit").click(function(event) {
+          console.log("this works")
+          let email = $(".emailSignUP").val()
+          let pass = $(".passwordSignUp").val()
+          let passCheck = $(".passwordSignUpCheck").val()
+          if (email.length==0){
+            alert("please fill in your email")
+            event.preventDefault()
+          }
+          else if (pass.length==0){
+            event.preventDefault()
+            alert("please fill in your password")
+          }
+          else if (passCheck.length==0){
+            event.preventDefault()
+            alert("please fill in your password validation")
+          }
+          else if (pass !== passCheck) {
+            event.preventDefault()
+            alert("PASSWORD DOES NOT MATCH")
+          }
+        })
+        $(".loginsubmit").click(function(event) {
+          let login_email = $(".loginemail").val()
+          let login_password = $(".loginpassword").val()
+          if (login_email.length == 0){
+            event.preventDefault()
+            alert("please fill in your email address")
+          }
+          else if (login_password.length == 0){
+            event.preventDefault()
+            alert("please fill in your password")
+          }
+        })
+      })
